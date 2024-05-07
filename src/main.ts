@@ -1,11 +1,14 @@
-import './assets/main.css'
+import { createApp, h } from 'vue'
+import components from '@/components/UI'
+import App from '@/App.vue'
+import router from '@/router/router'
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
+const app = createApp({
+  render: () => h(App)
+})
 
-const app = createApp(App)
+;(components as any).forEach((component: any) => {
+  app.component(component.__name, component)
+})
 
-app.use(router)
-
-app.mount('#app')
+app.use(router).mount('#app')
