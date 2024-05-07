@@ -19,6 +19,8 @@
     "vuex": "^4.0.2"
   },
   "devDependencies": {
+    "@types/babel-types": "^7.0.15",
+    "@babel/types": "^7.24.5",
     "@rushstack/eslint-patch": "^1.8.0",
     "@tsconfig/node20": "^20.1.4",
     "@types/node": "^20.12.10",
