@@ -15,28 +15,28 @@ import { ref, computed, watchEffect } from 'vue'
 import Navbar from '@/components/NavBar.vue'
 import FooterComponent from '@/components/FooterComponent.vue'
 
-const backgroundColor = ref('#f0f0f0')
+const backgroundColor = ref('#f0f0f0') as { value: string }
 
 watchEffect(() => {
   document.body.style.backgroundColor = backgroundColor.value
 })
 
-const showNavbar = ref(true)
-const showFooter = ref(true)
+const showNavbar = ref(true) as { value: boolean }
+const showFooter = ref(true) as { value: boolean }
 
 const flightAreaHeight = computed(() => {
   let height = 100
   if (showNavbar.value) height -= 10
   if (showFooter.value) height -= 10
   return `height: ${height}vh;`
-})
+}) as { value: string }
 
 window.addEventListener('mousemove', (e) => {
-  showNavbar.value = e.clientY <= 80
-  showFooter.value = window.innerHeight - e.clientY <= 80
+  showNavbar.value = (e.clientY <= 80) as boolean
+  showFooter.value = (window.innerHeight - e.clientY <= 80) as boolean
 
-  const navbar = document.querySelector('.Navbar')
-  const footer = document.querySelector('.FooterComponent')
+  const navbar = document.querySelector('.Navbar') as HTMLElement
+  const footer = document.querySelector('.FooterComponent') as HTMLElement
 
   if (navbar) {
     if (showNavbar.value) {
