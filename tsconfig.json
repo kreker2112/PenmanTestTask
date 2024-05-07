@@ -2,7 +2,7 @@
   "files": [],
   "compilerOptions": {
     "moduleResolution": "node",
-    "lib": ["esnext"],
+    "lib": ["dom", "esnext"],
     "noEmit": false,
     "outDir": "./dist",
     "declarationDir": "./declarations",
