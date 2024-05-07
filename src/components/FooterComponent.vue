@@ -27,6 +27,8 @@
     text-align: center;
 
     p {
+      margin: 0 auto;
+      width: fit-content;
       display: flex;
       flex-direction: column;
       gap: 5px;
