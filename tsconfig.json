@@ -1,6 +1,12 @@
 {
   "files": [],
   "compilerOptions": {
+    "moduleResolution": "node",
+    "lib": ["esnext"],
+    "noEmit": false,
+    "outDir": "./dist",
+    "declarationDir": "./declarations",
+    "declaration": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "resolveJsonModule": true,
