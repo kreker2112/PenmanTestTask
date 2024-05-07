@@ -25,9 +25,9 @@ const showNavbar = ref(true)
 const showFooter = ref(true)
 
 const flightAreaHeight = computed(() => {
-  let height = 100 // Базовая высота в vh
-  if (showNavbar.value) height -= 10 // Предположим, что Navbar занимает 10vh
-  if (showFooter.value) height -= 10 // Предположим, что Footer занимает 10vh
+  let height = 100
+  if (showNavbar.value) height -= 10
+  if (showFooter.value) height -= 10
   return `height: ${height}vh;`
 })
 
@@ -71,6 +71,7 @@ window.addEventListener('mousemove', (e) => {
   background-image: url('@/assets/images/map.jpg');
   background-size: cover;
   background-repeat: no-repeat;
+  z-index: 99;
 }
 
 .Navbar,

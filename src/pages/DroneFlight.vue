@@ -3,7 +3,7 @@
     <img
       class="drone"
       :src="drone"
-      :style="{ top: dronePosition.y + 'px', left: dronePosition.x + 'px' }"
+      :style="{ top: dronePosition.y + 'vh', left: dronePosition.x + 'vw' }"
     />
     <button v-if="!running" @click="startAnimation">Старт</button>
     <button v-else @click="stopAnimation">Стоп</button>
@@ -20,7 +20,7 @@ interface Position {
   y: number
 }
 
-const dronePosition = reactive<Position>({ x: 870, y: 590 })
+const dronePosition = reactive<Position>({ x: 50, y: 50 })
 const running = ref(false)
 let intervalId: number | undefined
 
@@ -35,10 +35,14 @@ const startAnimation = () => {
     if (index < steps) {
       const entry = flightData[index]
       const angle = parseFloat(entry.direction) * (Math.PI / 180)
-      const speed = parseFloat(entry.speed) / 5000
 
-      dronePosition.x += speed * Math.cos(angle) * 100
-      dronePosition.y -= speed * Math.sin(angle) * 100
+      const speed = parseFloat(entry.speed) / 500
+
+      let newX = dronePosition.x + speed * Math.cos(angle)
+      let newY = dronePosition.y - speed * Math.sin(angle)
+
+      dronePosition.x = Math.min(100 - 1.5, Math.max(1.5, newX))
+      dronePosition.y = Math.min(100 - 1.5, Math.max(1.5, newY))
 
       index += 1
     } else {
@@ -50,8 +54,8 @@ const startAnimation = () => {
 const stopAnimation = () => {
   running.value = false
   clearInterval(intervalId)
-  dronePosition.x = 870
-  dronePosition.y = 590
+  dronePosition.x = 50
+  dronePosition.y = 50
 }
 
 onUnmounted(() => {
