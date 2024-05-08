@@ -6,19 +6,33 @@
  preserveAspectRatio="xMidYMid meet">
  <defs>
     <radialGradient id="radialGrad" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-        <stop offset="0%" style="stop-color:rgb(255,255,0); stop-opacity:1" />
-        <stop offset="100%" style="stop-color:rgb(255,0,0); stop-opacity:1" />
+        <stop offset="0%" style="stop-color:#FFFF00; stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#800080; stop-opacity:1" />
     </radialGradient>
     <pattern id="pattern1" patternUnits="userSpaceOnUse" width="10" height="10">
         <circle cx="5" cy="5" r="4" style="stroke: none; fill: #ff0000"/>
     </pattern>
 </defs>
-<circle cx="0" cy="100" r="20" fill="red" filter="url(#motionBlur)">
-        <animate attributeName="cx" from="0" to="800" dur="2s" repeatCount="indefinite"/>
-    </circle>
 <metadata>
 Created by potrace 1.15, written by Peter Selinger 2001-2017
 </metadata>
+<circle cx="640" cy="620" r="50" fill="red"/>
+
+<circle cx="1280" cy="620" r="50" fill="red">
+    <animate attributeName="cx" from="1280" to="640" dur="2s" repeatCount="indefinite"/>
+</circle>
+
+<circle cx="0" cy="620" r="50" fill="red">
+    <animate attributeName="cx" from="0" to="640" dur="2s" repeatCount="indefinite"/>
+</circle>
+
+<circle cx="640" cy="0" r="50" fill="red">
+    <animate attributeName="cy" from="0" to="620" dur="2s" repeatCount="indefinite"/>
+</circle>
+
+<circle cx="640" cy="1240" r="50" fill="red">
+    <animate attributeName="cy" from="1240" to="620" dur="2s" repeatCount="indefinite"/>
+</circle>
 <g transform="translate(0.000000,1240.000000) scale(0.100000,-0.100000)"
 fill="url(#radialGrad)" stroke="none" clip-path="url(#clip)">
 <path d="M3875 12390 c-336 -85 -1036 -696 -1374 -1199 l-61 -91 -48 29 c-26
