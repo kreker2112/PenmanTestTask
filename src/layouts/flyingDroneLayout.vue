@@ -11,46 +11,44 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watchEffect } from 'vue'
+import { ref, computed, watchEffect, Ref } from 'vue'
 import Navbar from '@/components/NavBar.vue'
 import FooterComponent from '@/components/FooterComponent.vue'
 
-const backgroundColor = ref('#f0f0f0') as { value: string }
+const backgroundColor = ref('#f0f0f0')
+const showNavbar = ref(true) as Ref<boolean>
+const showFooter = ref(true) as Ref<boolean>
+const navbar = ref<HTMLElement | null>(null)
+const footer = ref<HTMLElement | null>(null)
 
 watchEffect(() => {
   document.body.style.backgroundColor = backgroundColor.value
 })
 
-const showNavbar = ref(true) as { value: boolean }
-const showFooter = ref(true) as { value: boolean }
-
 const flightAreaHeight = computed(() => {
-  let height = 100
+  let height: number = 100
   if (showNavbar.value) height -= 0
   if (showFooter.value) height -= 0
   return `height: ${height}vh;`
-}) as { value: string }
+}) as Ref<string>
 
 window.addEventListener('mousemove', (e) => {
   showNavbar.value = (e.clientY <= 80) as boolean
   showFooter.value = (window.innerHeight - e.clientY <= 80) as boolean
 
-  const navbar = document.querySelector('.Navbar') as HTMLElement
-  const footer = document.querySelector('.FooterComponent') as HTMLElement
-
-  if (navbar) {
+  if (navbar.value) {
     if (showNavbar.value) {
-      navbar.classList.remove('hidden')
+      navbar.value.classList.remove('hidden')
     } else {
-      navbar.classList.add('hidden')
+      navbar.value.classList.add('hidden')
     }
   }
 
-  if (footer) {
+  if (footer.value) {
     if (showFooter.value) {
-      footer.classList.remove('hidden')
+      footer.value.classList.remove('hidden')
     } else {
-      footer.classList.add('hidden')
+      footer.value.classList.add('hidden')
     }
   }
 })
