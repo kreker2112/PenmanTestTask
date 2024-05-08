@@ -11,7 +11,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onUnmounted, watchEffect } from 'vue'
+import { defineEmits } from 'vue'
+import { ref, reactive, onUnmounted } from 'vue'
 import flightData from '../data/flightData.json'
 import drone from '@/assets/icons/drone.svg'
 
@@ -21,25 +22,26 @@ interface Position {
 }
 
 const dronePosition = reactive<Position>({ x: 50, y: 50 })
-const running = ref(false) as { value: boolean }
+const running = ref(false)
 let intervalId: number | undefined
+
+const emits = defineEmits(['update:running'])
 
 const startAnimation = (): void => {
   running.value = true
-  let index: number = 0
-  const steps: number = flightData.length
-  const totalTime: number = 20000
-  const stepTime: number = totalTime / steps
+  emits('update:running', true)
+  let index = 0
+  const steps = flightData.length
+  const totalTime = 20000
+  const stepTime = totalTime / steps
 
   intervalId = window.setInterval(() => {
     if (index < steps) {
-      const entry: any = flightData[index]
-      const angle: number = parseFloat(entry.direction) * (Math.PI / 180)
-
-      const speed: number = parseFloat(entry.speed) / 500
-
-      let newX: number = dronePosition.x + speed * Math.cos(angle)
-      let newY: number = dronePosition.y - speed * Math.sin(angle)
+      const entry = flightData[index]
+      const angle = parseFloat(entry.direction) * (Math.PI / 180)
+      const speed = parseFloat(entry.speed) / 500
+      let newX = dronePosition.x + speed * Math.cos(angle)
+      let newY = dronePosition.y - speed * Math.sin(angle)
 
       dronePosition.x = Math.min(100 - 1.5, Math.max(1.5, newX))
       dronePosition.y = Math.min(100 - 1.5, Math.max(1.5, newY))
@@ -53,6 +55,7 @@ const startAnimation = (): void => {
 
 const stopAnimation = (): void => {
   running.value = false
+  emits('update:running', false)
   clearInterval(intervalId)
   dronePosition.x = 50
   dronePosition.y = 50
@@ -60,12 +63,6 @@ const stopAnimation = (): void => {
 
 onUnmounted(() => {
   clearInterval(intervalId)
-})
-
-const backgroundColor = ref('#f0f0f0') as { value: string }
-
-watchEffect(() => {
-  document.body.style.backgroundColor = backgroundColor.value
 })
 </script>
 

@@ -26,8 +26,8 @@ const showFooter = ref(true) as { value: boolean }
 
 const flightAreaHeight = computed(() => {
   let height = 100
-  if (showNavbar.value) height -= 10
-  if (showFooter.value) height -= 10
+  if (showNavbar.value) height -= 0
+  if (showFooter.value) height -= 0
   return `height: ${height}vh;`
 }) as { value: string }
 
