@@ -15,8 +15,7 @@
   "dependencies": {
     "uuid": "^9.0.1",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.0",
-    "vuex": "^4.0.2"
+    "vue-router": "^4.3.0"
   },
   "devDependencies": {
     "@babel/types": "^7.24.5",
