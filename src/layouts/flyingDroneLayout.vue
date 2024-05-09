@@ -11,7 +11,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watchEffect, Ref } from 'vue'
+import { ref, computed, watchEffect } from 'vue'
+import type { Ref } from 'vue'
 import Navbar from '@/components/NavBar.vue'
 import FooterComponent from '@/components/FooterComponent.vue'
 
