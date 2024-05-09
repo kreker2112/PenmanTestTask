@@ -4,7 +4,7 @@
     "moduleResolution": "node",
     "lib": ["dom", "esnext"],
     "noEmit": false,
-    "outDir": "./dist",
+    "outDir": "./dist/types",
     "declarationDir": "./declarations",
     "declaration": true,
     "forceConsistentCasingInFileNames": true,
@@ -16,7 +16,14 @@
     },
     "esModuleInterop": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "tests/**/*.ts", "tests/**/*.tsx"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.tsx",
+    "src/**/*"
+  ],
   "references": [
     {
       "path": "./tsconfig.node.json"
